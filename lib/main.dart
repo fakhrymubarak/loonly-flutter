@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:loonly_flutter/data/dummy_movies.dart';
 import 'package:loonly_flutter/utils/colors.dart';
 import 'package:loonly_flutter/views/mobile/dashboard_page_mobile.dart';
+import 'package:loonly_flutter/views/mobile/detail_page.dart';
 import 'package:loonly_flutter/views/web/dashboard_page_web.dart';
 
 void main() {
@@ -18,17 +20,21 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         scaffoldBackgroundColor: colorWhite,
       ),
-      home: LayoutBuilder(
-        builder: (BuildContext context, BoxConstraints constraints) {
-          if (constraints.maxWidth < 600) {
-            /// Mobile Display
-            return const DashboardPageMobile();
-          } else {
-            /// Website Display
-            return const DashboardPageWeb();
-          }
-        },
-      ),
+      initialRoute: "/",
+      routes: {
+        "/": (context) => LayoutBuilder(
+              builder: (BuildContext context, BoxConstraints constraints) {
+                if (constraints.maxWidth < 600) {
+                  /// Mobile Display
+                  return const DashboardPageMobile();
+                } else {
+                  /// Website Display
+                  return const DashboardPageWeb();
+                }
+              },
+            ),
+        "/detail": (context) => DetailPage(data : ModalRoute.of(context)!.settings.arguments as Movie),
+      },
     );
   }
 }

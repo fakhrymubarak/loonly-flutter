@@ -12,7 +12,7 @@ import 'package:loonly_flutter/utils/ui/image_builder_utils.dart';
 class DetailPage extends StatefulWidget {
   final Movie data;
 
-  const DetailPage(this.data, {Key? key}) : super(key: key);
+  const DetailPage({required this.data, Key? key}) : super(key: key);
 
   @override
   State<DetailPage> createState() => _DetailPageState();
@@ -65,7 +65,9 @@ class _DetailPageState extends State<DetailPage> {
               child: Image(
                 width: double.infinity,
                 fit: BoxFit.cover,
-                image: NetworkImage(((screenSize < 600) ? baseImageUrl780: baseImageUrl1280) + widget.data.backdropUrl),
+                image: NetworkImage(
+                    ((screenSize < 600) ? baseImageUrl780 : baseImageUrl1280) +
+                        widget.data.backdropUrl),
                 loadingBuilder:
                     (_, Widget child, ImageChunkEvent? chunkEvent) =>
                         (chunkEvent == null)
@@ -127,7 +129,10 @@ class _DetailPageState extends State<DetailPage> {
                     borderRadius: radSmall,
                     child: Image(
                       fit: BoxFit.cover,
-                      image: NetworkImage(((screenSize < 600) ? baseImageUrl500: baseImageUrl780) + widget.data.imageUrl),
+                      image: NetworkImage(((screenSize < 600)
+                              ? baseImageUrl500
+                              : baseImageUrl780) +
+                          widget.data.imageUrl),
                       loadingBuilder:
                           (_, Widget child, ImageChunkEvent? chunkEvent) =>
                               (chunkEvent == null)
@@ -204,7 +209,7 @@ class _DetailPageState extends State<DetailPage> {
                     var data = listMovie[index];
                     return InkWell(
                       onTap: () {
-                        context.navigateTo(DetailPage(data));
+                        context.navigateTo(DetailPage(data: data));
                       },
                       child: _itemMovieWidget(data),
                     );

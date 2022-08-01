@@ -45,7 +45,7 @@ class DashboardPageWeb extends StatelessWidget {
         var data = listMovie[index];
         return InkWell(
           onTap: () {
-            context.navigateTo(DetailPage(data));
+            context.navigateToNamed("/detail", data);
           },
           child: _itemMoviePagerWidget(data),
         );
@@ -111,7 +111,7 @@ class DashboardPageWeb extends StatelessWidget {
             var data = listMovie[index];
             return InkWell(
               onTap: () {
-                context.navigateTo(DetailPage(data));
+                context.navigateTo(DetailPage(data: data));
               },
               child: _itemMovieWidget(data),
             );
