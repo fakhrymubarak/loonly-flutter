@@ -16,4 +16,8 @@ extension Navigation on BuildContext {
   Future<dynamic> navigateToNamed<T extends Object?>(String name,
           [T? data]) =>
       Navigator.pushNamed(this, name, arguments: data);
+  
+  Future<dynamic> replaceScreen<T extends Object?>(String name,
+          [T? data]) =>
+      Navigator.pushReplacementNamed(this, name, arguments: data);
 }
